@@ -1,0 +1,12 @@
+body {
+  background-color: #0f2537;
+  color: #ebebeb; /* text color */
+}
+
+/* rendre un text visible dans input */
+.shiny-input-container {
+  color: #474747;
+}
+.input_text {
+  color:#474747;
+}
