@@ -109,13 +109,13 @@ Au lancement de l'application, un utilisateur peut paramétrer :
 <br>Arguments
 - x  : 		Matrice numérique de données, ou un objet qui peut être contraint à une telle matrice (telle qu’un vecteur numérique ou une trame de données avec tous colonnes numériques).
 
-- Centres : 	Soit le nombre de clusters, disons k, ou un ensemble de centres de clusters initiaux (distincts). Si un nombre, un ensemble aléatoire des lignes (distinctes) sont choisies comme centres initiaux.Ici, on met 3 par défaut.
+- centers : 	Soit le nombre de clusters, disons k, ou un ensemble de centres de clusters initiaux (distincts). Si un nombre, un ensemble aléatoire des lignes (distinctes) sont choisies comme centres initiaux.Ici, on met 3 par défaut.
 
 - iter.max : 	Nombre maximal d’itérations autorisées, ici on prends 10.
 
 - nstart : 	Si c'est un nombre, combien d’ensembles aléatoires devrait être choisi?, ici on prends 25 par défaut.
 
-- algorithme : Caractère: peut être abrégé. il y a "Hartigan-Wong", "Lloyd", "Forgy", "MacQueen". Ici om met "Hartigan-Wong" par défaut.
+- algorithm : Caractère: peut être abrégé. il y a "Hartigan-Wong", "Lloyd", "Forgy", "MacQueen". Ici om met "Hartigan-Wong" par défaut.
 
 - trace :	 Nombre logique ou entier, actuellement utilisé uniquement dans le méthode par défaut (): si positive (ou true), le traçage des informations sur la progression de l’algorithme est produit. Des valeurs plus élevées peuvent produire plus d’informations de traçage, ici on prends FALSE.
 
