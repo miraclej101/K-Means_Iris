@@ -21,36 +21,49 @@ ui <- fluidPage(
                   max = 10,
                   value = 3,
                   step = 1),
+      sliderInput(inputId = "nstart",
+                  label = "Nombre d'ensembles aléatoires au départ",
+                  min = 1,
+                  max = 30,
+                  value= 25),
+      selectInput(inputId = "algo",
+                  label = "Selectionner un algorithme pour K-Means",
+                  choices = list("Hartigan-Wong"= "Hartigan-Wong"
+                                 ,"Lloyd" = "Lloyd",
+                                 "Forgy"= "Forgy",
+                                 "MacQueen" = "MacQueen" ),
+                  selected = "Hartigan-Wong"),
       h4("Déterminer un nombre optimal de clusters",class="input_text"),
       selectInput(inputId = "methode",
-                  label = "Selectionner une méthode",
-                  choices = list("silhouette"= "silhouette",
-                                 "within sum of squares" = "wss",
-                                 "gap_stat" ="gap_stat"),
-                                 selected = "wss")
-      
-    ),
+                label = "Selectionner une méthode",
+                choices = list("silhouette"= "silhouette",
+                               "within sum of squares" = "wss",
+                               "gap statistique" ="gap_stat"),
+                selected = "wss"),
+    ), 
     mainPanel(
       #output cluster plot
       plotOutput(outputId = "clusterPlot"),
-      br(),
+      br(), #sortie une ligne
       plotOutput(outputId = "nbClust")
     )
-  )
+  ),
 )
 #Définir une logique de server pour calculer les résultats
 server <- function(input,output){
   
   dataInput <- reactive({
     #calculer K-means pour la dataframe iris, centers = nombre de groupes
-    #initialiser 25 affectations de départ aléatoires différentes, 
+    #initialiser nstart affectations de départ aléatoires différentes, 
     #puis sélectionnera les meilleurs résultats
-    res.km <- kmeans(df,centers = input$clusts, nstart = 25 )
+    res.km <- kmeans(df,centers = input$clusts, nstart = input$nstart,algorithm = input$algo)
   })
   
   output$clusterPlot <- renderPlot({
-    #plot cluster ,non labelé (geom option)
-    fviz_cluster(dataInput(),data = df,geom = "point",ellipse.type = "convex",ggtheme = theme_minimal())
+    #plot cluster
+    fviz_cluster(dataInput(),data = df,geom = c("point","text"),
+                labelsize=8,ellipse.type = "convex",
+                 ggtheme = theme_gray())
   })
   
   output$nbClust <- renderPlot({
