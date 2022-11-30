@@ -3,15 +3,16 @@ library(factoextra)
 library(shiny)
 
 data(iris)
-#dataframe normé et enlevé la collone 5 qui est qualitative
+#dataframe normé et enlevé la colonne 5 qui est qualitative
 df <- scale(iris[,-5])
 
 #Définir UI pour l'app
 ui <- fluidPage(
+  #appliquer (style) css dans l'application
   includeCSS("www/style.css"),
-  #Titre de l'app
+  #Titre de l'application
   titlePanel("Iris K-Means"),
-  #Sidebar layout avec les définitions des input et ouput 
+  #Sidebar layout avec les définitions des inputs et outputs 
   sidebarLayout(
     #Sidebar panel pour input
     sidebarPanel(
